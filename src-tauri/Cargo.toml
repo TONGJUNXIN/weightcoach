@@ -1,0 +1,34 @@
+[package]
+name = "weightcoach"
+version = "0.1.0"
+description = "减重提醒（WeightCoach）— Windows 桌面家庭减重提醒工具"
+edition = "2021"
+
+# Rust 只做四件事：数据库迁移、密钥、HTTP、定时器/托盘（SRS 3.5）；业务计算留在 TypeScript。
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-sql = { version = "2", features = ["sqlite"] }
+tauri-plugin-single-instance = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+tokio = { version = "1", features = ["time", "rt-multi-thread", "macros"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+keyring = { version = "3", features = ["windows-native"] }
+thiserror = "2"
+log = "0.4"
+tauri-plugin-log = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true

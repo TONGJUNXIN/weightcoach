@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 浅色主题（本期唯一主题）；字号两档由 html 根字号切换 */
+html {
+  font-size: 15px;
+}
+html[data-font-scale="large"] {
+  font-size: 17px;
+}
+
+body {
+  @apply bg-bg text-text font-sans;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 可读性：把界面里的 8–12px 小字整体抬高；大的数字与标题不受影响 */
+[class~="text-[8px]"],
+[class~="text-[8.5px]"],
+[class~="text-[9px]"],
+[class~="text-[9.5px]"] {
+  font-size: calc(11px * var(--ui-scale, 1)) !important;
+  line-height: 1.5 !important;
+}
+[class~="text-[10px]"],
+[class~="text-[10.5px]"] {
+  font-size: calc(11.5px * var(--ui-scale, 1)) !important;
+  line-height: 1.5 !important;
+}
+[class~="text-[11px]"],
+[class~="text-[11.5px]"] {
+  font-size: calc(12px * var(--ui-scale, 1)) !important;
+  line-height: 1.5 !important;
+}
+[class~="text-[12px]"] {
+  font-size: calc(13px * var(--ui-scale, 1)) !important;
+}
+[class~="text-[13px]"] {
+  font-size: calc(14px * var(--ui-scale, 1)) !important;
+}
+.text-xs {
+  font-size: calc(13px * var(--ui-scale, 1)) !important;
+  line-height: 1.5 !important;
+}
+.text-sm {
+  font-size: calc(15px * var(--ui-scale, 1)) !important;
+}
+
+::selection {
+  background: #e7f4ed;
+  color: #215c46;
+}
+
+/* 细滚动条，避免桌面窗口出现系统重滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d8d2c7 transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #d8d2c7;
+  border-radius: 99px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid #2f7d5f;
+  outline-offset: 2px;
+}
+
+/* 大数字统一等宽，避免跳动 */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 卡片悬浮的克制反馈 */
+.card-hover {
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+.card-hover:hover {
+  border-color: #cfd9d4;
+  box-shadow: 0 12px 30px rgba(32, 48, 46, 0.08);
+}
+
+/* 旧页面的标题沿用 text-xl；统一到 A+ 的 26px 层级，后续重排时再替换为 PageHeader */
+main h1.text-xl {
+  font-size: 26px;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+}
