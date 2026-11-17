@@ -19,6 +19,7 @@ wv2data/
 .env.*
 *.pem
 *.key
+.github-token
 
 # 编辑器
 .vscode/
